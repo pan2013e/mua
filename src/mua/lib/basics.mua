@@ -1,0 +1,29 @@
+make "length [
+    [ it ]
+    [
+        if isempty :it
+            [ return 0 ]
+            [ return add length butfirst :it 1 ]
+    ]
+]
+make "map [
+    [ lst cb ]
+    [
+        if isempty :lst
+            [ return [] ]
+            [ return sentence cb first :lst map butfirst :lst :cb ]
+    ]
+]
+make "foreach :map
+make "filter [
+    [ lst cb ]
+    [
+        if isempty :lst
+            [ return [] ]
+            [
+                if cb first :lst
+                    [ return sentence first :lst filter butfirst :lst :cb ]
+                    [ return filter butfirst :lst :cb ]
+            ]
+    ]
+]

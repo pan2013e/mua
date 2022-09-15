@@ -1,0 +1,25 @@
+make "length
+[
+	[x]
+	[
+		if isempty :x
+			[return 0]
+			[return add length butfirst :x 1]
+	]
+]
+print length [1 [2 3] 4 5]
+print join [] [2 3 5]
+make "reverse [
+    [x]
+    [
+        if isempty :x
+            [return :x]
+            [
+                if islist :x
+                    [return join reverse butfirst :x first :x]
+                    [return word reverse butfirst :x first :x]
+            ]
+    ]
+]
+print reverse [1 2 3 4]
+print reverse [1 [2 3 3] 4 5]

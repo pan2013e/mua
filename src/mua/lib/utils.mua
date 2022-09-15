@@ -1,0 +1,19 @@
+make "let [
+	[__a __b]
+	[
+		make :__a :__b
+		export :__a
+	]
+]
+make "find [
+    [lst x]
+    [
+        if isempty :lst
+            [return false]
+            [
+                if eq first :lst :x
+                    [return true]
+                    [return find butfirst :lst :x]
+            ]
+    ]
+]

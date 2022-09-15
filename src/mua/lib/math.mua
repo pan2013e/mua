@@ -1,0 +1,37 @@
+make "pi "3.14159
+make "e  "2.71828
+make "square [
+    [ a ]
+    [ return (:a*:a) ]
+]
+make "isEven [
+    [ a ]
+    [ if eq (:a%2) 0 [ return true ] [ return false ] ]
+]
+make "isOdd [
+    [ a ]
+    [ if eq (:a%2) 0 [ return false ] [ return true ] ]
+]
+make "isPrime_impl [
+    [ a idx ]
+    [
+
+        if gt :idx sqrt :a
+            [ return true ]
+            [
+                if eq (:a%:idx) 0
+                    [ return false ]
+                    [
+                        return isPrime_impl :a (:idx+1)
+                    ]
+            ]
+   ]
+]
+make "isPrime [
+    [ a ]
+    [
+         if lt :a 2   [ return false ] []
+         if isEven :a [ return false ] []
+         return isPrime_impl :a 2
+    ]
+]
